@@ -1,4 +1,4 @@
-﻿
+
 use master;
 go
 drop database if exists edunovawp2;
