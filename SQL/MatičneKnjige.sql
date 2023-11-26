@@ -22,7 +22,7 @@ Naziv varchar (100),
 );
 
 create table MaticaRođenih(
-MaticaRođenih_ID int primary key identity (1,1) not null
+MaticaRođenih_ID int primary key identity (1,1) not null,
 DatumUpisa date not null,
 Ime varchar (100) not null,
 Prezime varchar (100) not null,
@@ -31,13 +31,14 @@ PrezimeOca varchar (100),
 ImeMajke varchar(100) not null,
 DjevojackoPrezimeMajke varchar (100),
 DatumRođenja date not null,
-MjestoRođenja varchar (100) not null
+MjestoRođenja varchar (100) not null,
 Područje int references Područja (Područja_ID) not null,
 Vjeroipovjest int references Vjerosipovjesti (Vjera_ID),
+Vidiljivost bit
 );
 
 create table MaticaUmrlih(
-MaticaUmrlih_ID int primary key identity (1,1) not null
+MaticaUmrlih_ID int primary key identity (1,1) not null,
 DatumUpisa date not null,
 Ime varchar (100) not null,
 Prezime varchar (100) not null,
@@ -48,13 +49,14 @@ ImeMajke varchar(100) not null,
 DjevojackoPrezimeMajke varchar (100),
 DatumSmrti date not null,
 MjestoSmrti varchar (100) not null,
-MjestoUkopa varchar (100) not null
+MjestoUkopa varchar (100) not null,
 Područje int references Područja (Područja_ID) not null,
 Vjeroipovjest int references Vjerosipovjesti (Vjera_ID),
+Vidiljivost bit
 );
 
 create table Ženici (
-Ženik_ID int primary key identity (1,1) not null
+Ženik_ID int primary key identity (1,1) not null,
 Ime varchar (50) not null,
 Prezime varchar (50) not null,
 OiB char (11) not null,
@@ -66,7 +68,7 @@ PrezimeNakonSklapanjaBraka varchar (100)
 );
 
 create table Nevjeste (
-Nevjesta_ID int primary key identity (1,1) not null
+Nevjesta_ID int primary key identity (1,1) not null,
 Ime varchar (50) not null,
 Prezime varchar (50) not null,
 OiB char (11) not null,
@@ -78,17 +80,36 @@ PrezimeNakonSklapanjaBraka varchar (100)
 );
 
 create table MaticaVjenčanih (
-MaticaVjenčanih_ID int primary key identity (1,1) not null
+MaticaVjenčanih_ID int primary key identity (1,1) not null,
 DatumUpisa date not null,
 MjestoUpisa varchar (100) not null,
 Područje int references Područja (Područja_ID) not null,
 Ženik int references Ženici (Ženik_ID) not null,
-Nevjesta int references Nevjeste (Nevjesta_ID) not null
+Nevjesta int references Nevjeste (Nevjesta_ID) not null,
+Vjeroipovjest int references Vjerosipovjesti (Vjera_ID),
+Vidiljivost bit
 );
 
 create table MatičneKnjige(
-Matica_ID int primary key identity (1,1) not null
+Matica_ID int primary key identity (1,1) not null,
 MaticaRođenih int references MaticaRođenih (MaticaRođenih_ID), 
 MaticaUmrlih int references MaticaUmrlih (MaticaUmrlih_ID),
 MaticaVjenčanih int references MaticaVjenčanih (MaticaVjenčanih_ID)
+);
+
+create table Podnositelji (
+Podnositelj_ID int primary key identity (1,1) not null,
+Ime varchar (50) not null,
+Prezime varchar (50) not null,
+OiB char (11) not null,
+Email varchar (50),
+Telefon varchar (50)
+);
+
+create table Zahtjevi (
+Zahtjev_ID int primary key identity (1,1) not null,
+DatumPodnošenja date not null,
+BrojZahtjeva int not null,
+Podnositelj int references Podnositelji (Podnositelj_ID) not null,
+OpisZahtjeva varchar (200)
 );
