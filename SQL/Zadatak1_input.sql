@@ -17,21 +17,22 @@
 --(2,'Fužine'), (2,'Punat'),(2,'Omišalj');
 
 --select * from Opcine;
---insert into Mjesta (Opcina, Naziv) values 
---(10,'Njivice'), (10,'Omišalj'),
---(8,'Fužine'),(8,'Vrata'),(8,'Lič'),
---(9,'Punat'),(9,'Stara Baška'),
---(7,'Medulin'),(7,'Vinkuran'),(7,'Pomer'),
---(5,'Bale'),(5,'Goleš'),(5,'Grmed'),
---(6,'Ližnjan'),(6,'Jadreški'),(6,'Muntić'),
---(4,'Draž'),(4,'Kneževi Vinogradi'), (4,'Batina'),
---(3,'Vuka'),(3,'Hrastovac'),(3,'Lipovac Hrastinski'),
---(2,'Čepin'), (2,'Bekentinci'),(2,'Čokadinci');
+--insert into Mjesta (Opcina,Naziv) values 
+--(9,'Njivice'), (9,'Omišalj'),
+--(7,'Fužine'),(7,'Vrata'),(7,'Lič'),
+--(8,'Punat'),(6,'Stara Baška'),
+--(6,'Medulin'),(6,'Vinkuran'),(6,'Pomer'),
+--(4,'Bale'),(4,'Goleš'),(4,'Grmed'),
+--(5,'Ližnjan'),(5,'Jadreški'),(5,'Muntić'),
+--(3,'Draž'),(3,'Kneževi Vinogradi'), (3,'Batina'),
+--(2,'Vuka'),(2,'Hrastovac'),(2,'Lipovac Hrastinski'),
+--(1,'Čepin'), (1,'Bekentinci'),(1,'Čokadinci');
 
 --select * from Mjesta;
 
---select a.Naziv,b.Ime,b.Prezime, c.Naziv 
---from Zupanije a inner join Zupani b
---on a.Zupanija_ID = b.Zupan_ID
+select a.Naziv,b.Ime,b.Prezime, c.Naziv
+from Zupanije a inner join Zupani b
+on a.Zupanija_ID = b.Zupan_ID
+inner join Opcine c on a.Naziv = c.Opcina_ID;
 --inner join Opcine c on a.Zupanija_ID=c.Naziv;
 
