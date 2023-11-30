@@ -30,9 +30,15 @@
 
 --select * from Mjesta;
 
-select a.Naziv,b.Ime,b.Prezime, c.Naziv
-from Zupanije a inner join Zupani b
-on a.Zupanija_ID = b.Zupan_ID
-inner join Opcine c on a.Naziv = c.Opcina_ID;
+--select a.Naziv,b.Ime,b.Prezime, c.Naziv
+--from Zupanije a inner join Zupani b
+--on a.Zupanija_ID = b.Zupan_ID
+--inner join Opcine c on a.Zupanija_ID = c.Opcina_ID;
+----inner join Mjesta d on d.Mjesto_ID = c.Opcina_ID;
 --inner join Opcine c on a.Zupanija_ID=c.Naziv;
 
+select a.*, b.*
+from Opcine a inner join Mjesta b
+on a.Opcina_ID = b.Mjesto_ID;
+
+select * from Opcine
