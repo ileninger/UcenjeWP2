@@ -68,7 +68,7 @@ muskarac int references muskarci (sifra)
 );
 
 create table punci (
-sifra int primary key (1,1),
+sifra int primary key,
 ogrlica int not null,
 gustoca decimal (14,9) not null,
 hlace varchar (41)
