@@ -31,6 +31,7 @@ hlace varchar (46),
 narukvica int
 );
 create table sestre_svekari(
+sifra int,
 sestra int references sestre (sifra),
 svekar int references svekri (sifra)
 );
@@ -67,7 +68,7 @@ muskarac int references muskarci (sifra)
 );
 
 create table punci (
-sifra int primary key identity (1,1),
+sifra int primary key (1,1),
 ogrlica int not null,
 gustoca decimal (14,9) not null,
 hlace varchar (41)
