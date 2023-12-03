@@ -1,4 +1,3 @@
-use Vjezba2;
 go
 
 --insert into decko (sifra,indiferentno, vesta,asocijalno) values
