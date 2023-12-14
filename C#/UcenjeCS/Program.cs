@@ -3,4 +3,4 @@ using UcenjeCS;
 
 //E01UlazIzlaz.Izvedi();
 
-E02VarijableTipoviPodatakaOperatori.Izvedi();
+ConsoleCreatures_CodeCademy.Izvedi();
