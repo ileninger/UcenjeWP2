@@ -33,20 +33,34 @@ namespace UcenjeCS
             //Console.WriteLine(totalEmployees);
             //Console.WriteLine(revenue);
 
-            int userAge=int.Parse(Console.ReadLine());
-            double jupiterYears = 11.86;
+            //int userAge=int.Parse(Console.ReadLine());
+            //double jupiterYears = 11.86;
 
-            double jupiterAge = userAge / jupiterYears;
+            //double jupiterAge = userAge / jupiterYears;
 
-            double journeyToJupiter = 6.142466;
+            //double journeyToJupiter = 6.142466;
 
-            double newEarthAge = userAge + journeyToJupiter;
+            //double newEarthAge = userAge + journeyToJupiter;
 
-            double newJupiterAge = newEarthAge / jupiterYears;
+            //double newJupiterAge = newEarthAge / jupiterYears;
 
-            Console.WriteLine(jupiterAge);
-            Console.WriteLine(newEarthAge);
-            Console.WriteLine(newJupiterAge);
+            //Console.WriteLine(jupiterAge);
+            //Console.WriteLine(newEarthAge);
+            //Console.WriteLine(newJupiterAge);
+
+
+            int numberOne = 12932;
+            int numberTwo = -2828472;
+
+            // Use built-in methods and save to variable 
+            double numberOneSqrt = Math.Floor(Math.Sqrt(numberOne));
+            double numberTwoSqrt = Math.Floor(Math.Sqrt(Math.Abs(numberTwo)));
+
+            // Use built-in methods and save to variable 
+
+
+            // Print the lowest number
+            Console.WriteLine(Math.Min(numberOneSqrt,numberTwoSqrt));
 
 
         }
