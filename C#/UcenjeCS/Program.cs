@@ -3,4 +3,4 @@ using UcenjeCS;
 
 //E01UlazIzlaz.Izvedi();
 
-ConsoleCreatures_CodeCademy.Izvedi();
+CodeCademy02.Izvedi();
