@@ -29,6 +29,8 @@ namespace UcenjeCS
             Console.WriteLine($"Silver cooints {SilerCoints}");
             Console.WriteLine($"Bronze coints {BronzCoints}");
 
+            Console.WriteLine();
+
         }
     }
 }
