@@ -16,10 +16,19 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("zad2")]
-        public float Zad2(int i, int j)
+        public double Zad2(int i, int j)
         {
             // Ruta vraća kvocijent dvaju primljenih brojeva
-            return 0; // Ovo ne valja, DZ
+            if (j != 0)
+            {
+                return (float)i / j;
+            }
+            {
+                Console.WriteLine("Djeljenje s nulom nije moguce");
+                return double.NaN;
+            }
+
+               // System.Console.WriteLine("Djeljenje s nulom nije moguce"); // Ovo ne valja, DZ
         }
 
         [HttpGet]
@@ -34,7 +43,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("zad4")]
-        public string Zad4(string s, string s1)
+        public string Zad4(int s, int s1)
         {
             // Ruta vraća spojene primljene znakove
             return string.Concat (s,s1);
