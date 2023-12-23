@@ -3,4 +3,4 @@ using UcenjeCS;
 
 //E01UlazIzlaz.Izvedi();
 
-CodeCademy03ChooseYouOwnAdventure.Izvedi();
+V01Vjezba1.Izvedi();

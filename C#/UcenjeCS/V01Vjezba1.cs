@@ -10,24 +10,51 @@ namespace UcenjeCS
     {
         public static void Izvedi ()
         {
-            Console.Write("Unesite prvi cijeli broj: ");
-            int PrviBroj = int.Parse(Console.ReadLine());
-            Console.Write("Unesite drugi cijeli broj: ");
-            int DrugiBroj = int.Parse(Console.ReadLine());
-            if (PrviBroj %1 == 0)
+            //int broj;
+            //for (; ; )
+            //{
+            //    Console.Write("Unesi broj između 1 i 10: ");
+            //    broj = int.Parse(Console.ReadLine());
+            //    if (broj >= 1 && broj <= 10)
+            //    {
+            //        break;
+            //    }
+            //    Console.WriteLine("Dragi korisniče, krivi unos!");
+            //}
+            int PrviBroj;
+            int DrugiBroj;  
+            for (; ; )
             {
-                if (DrugiBroj %2 == 0)
+                Console.Write("Unesite prvi cijeli broj: ");
+                string UnosPrvogBroja = Console.ReadLine();
+
+                if (int.TryParse(UnosPrvogBroja, out PrviBroj))
                 {
-                    Console.WriteLine("Unjeli ste prirodane brojeve");
-                } else
-                {
-                    Console.WriteLine("Drugi broj nije prirodan");
+                    Console.WriteLine($"Unjeli ste broj {PrviBroj}");
+                    break;
+
                 }
-             } else
-            {
-                Console.WriteLine("Prvi broj nije prirodan");
+                else
+                {
+                    Console.WriteLine("***Niste unjeli ste cijeli broj!!***");
+                }
             }
-            
+            for (; ; )
+            {
+                Console.Write("Unesite drugi cijeli broj: ");
+                string UnosDrugogBroja = Console.ReadLine();
+
+                if (int.TryParse(UnosDrugogBroja, out DrugiBroj))
+                {
+                    Console.WriteLine($"Unjeli ste broj {DrugiBroj}");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("***Niste unjeli ste cijeli broj!!***");
+                }
+            }
+
             Console.Write("Unesite operator: ");
             string Operator = Console.ReadLine();
 
@@ -36,22 +63,22 @@ namespace UcenjeCS
             switch (Operator)
             {
                 case "+":
-                    Rezultat=PrviBroj+DrugiBroj; 
+                    Rezultat = PrviBroj + DrugiBroj;
                     break;
                 case "-":
-                    Rezultat=PrviBroj-DrugiBroj;
+                    Rezultat = PrviBroj - DrugiBroj;
                     break;
                 case "*":
-                    Rezultat=PrviBroj*DrugiBroj;
+                    Rezultat = PrviBroj * DrugiBroj;
                     break;
                 case "/":
-                    if (DrugiBroj==0)
+                    if (DrugiBroj == 0)
                     {
                         Console.WriteLine("Nema djeljenja s nulom");
                     }
                     else
                     {
-                        Rezultat=PrviBroj/DrugiBroj;
+                        Rezultat = PrviBroj / DrugiBroj;
                     }
                     break;
                 default:
