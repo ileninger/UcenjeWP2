@@ -49,5 +49,19 @@ namespace WebAPI.Controllers
             }
             return Rezultat;
         }
+
+        [HttpPost]
+        [Route("Zad4")]
+        public int Zad4(int PrviBroj) {
+            int Rezultat = 0;
+            for (int i = 0; i <= PrviBroj; i ++)
+            {
+                Rezultat += i;
+
+            }
+            return Rezultat;
+        
+        
+        }
     }
 }
