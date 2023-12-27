@@ -21,5 +21,19 @@ namespace WebAPI.Controllers
             return Rezultat;
         }
 
+        [HttpPost]
+        [Route("Zad2")]
+
+        public int [] Zad2()
+        {
+            int [] NizParnihBrojeva = new int[(58/2)];
+            int index = 0;
+            for (int i = 0; i <=57; i +=2)
+            {
+                NizParnihBrojeva[index] = i;
+                index++;
+            }
+            return NizParnihBrojeva;
+        }
     }
 }
