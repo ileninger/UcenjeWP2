@@ -17,7 +17,7 @@ namespace UcenjeCS
 
             for(int i = 0; i < BrojRedaka; i++)
             {
-                for (int j = 1; j< BrojRedaka - i; j++)
+                for (int j = 1; j< BrojRedaka-i; j++)
                 {
                     Str += " ";
                 }
