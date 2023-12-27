@@ -60,8 +60,29 @@ namespace WebAPI.Controllers
 
             }
             return Rezultat;
-        
-        
+        }
+        [HttpPost]
+        [Route("Zad5")]
+
+        public int[] Zad5 (int PrviBroj, int DrugiBroj)
+        {
+            int index = 0;
+            int[] NizParnihBrojeva;
+            if (DrugiBroj < PrviBroj)
+            {
+                NizParnihBrojeva = new int[((DrugiBroj - PrviBroj)/2)];
+                for (int i = PrviBroj; i <= DrugiBroj; i += 2)
+                {
+                    NizParnihBrojeva[index] = i;
+                    index++;
+
+                }
+            }
+            else
+            {
+
+            }
+            return NizParnihBrojeva;
         }
     }
 }
