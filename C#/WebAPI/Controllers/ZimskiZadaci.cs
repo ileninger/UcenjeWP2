@@ -35,5 +35,19 @@ namespace WebAPI.Controllers
             }
             return NizParnihBrojeva;
         }
+
+        [HttpPost]
+        [Route("Zad3")]
+
+        public int Zad3() {
+            int Rezultat = 0;
+
+            for (int i =0; i<=18;i +=2)
+            {
+                Rezultat += i;
+
+            }
+            return Rezultat;
+        }
     }
 }
