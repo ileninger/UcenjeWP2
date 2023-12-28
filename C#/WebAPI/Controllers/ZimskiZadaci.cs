@@ -80,19 +80,25 @@ namespace WebAPI.Controllers
             }
             return Ok(NizParnihBrojeva);
         }
-        //{
-            //int index = 0;
-            //int[] NizParnihBrojeva;
-            //if (DrugiBroj < PrviBroj)
-            //{
-            //    NizParnihBrojeva = new int[((DrugiBroj - PrviBroj)/2)];
-            //    for (int i = PrviBroj; i <= DrugiBroj; i += 2)
-            //    {
-            //        NizParnihBrojeva[index] = i;
-            //        index++;
+        [HttpPost]
+        [Route("Zad6")]
 
-            //    }
-            //}
-        //}
+        public IActionResult Zad6(int PrviBroj, int DrugiBroj)
+        {
+            if (DrugiBroj <= PrviBroj)
+            {
+                return BadRequest("Krivi unos, drugi broj mora biti veči od prvog");
+            }
+            List<int> NizNeParnihBrojeva = new List<int>();
+            for (int i = PrviBroj; i <= DrugiBroj; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    NizNeParnihBrojeva.Add(i);
+                }
+            }
+            return Ok(NizNeParnihBrojeva);
+
+        }
     }
 }
