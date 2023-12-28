@@ -64,25 +64,35 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Route("Zad5")]
 
-        public int[] Zad5 (int PrviBroj, int DrugiBroj)
+        public IActionResult Zad5(int PrviBroj, int DrugiBroj)
         {
-            int index = 0;
-            int[] NizParnihBrojeva;
-            if (DrugiBroj < PrviBroj)
+            if (DrugiBroj <= PrviBroj)
             {
-                NizParnihBrojeva = new int[((DrugiBroj - PrviBroj)/2)];
-                for (int i = PrviBroj; i <= DrugiBroj; i += 2)
+                return BadRequest("Krivi unos, drugi broj mora biti veči od prvog");
+            }
+            List <int> NizParnihBrojeva = new List <int> ();
+            for (int i = PrviBroj; i<=DrugiBroj; i++)
+            {
+                if (i % 2 == 0)
                 {
-                    NizParnihBrojeva[index] = i;
-                    index++;
-
+                    NizParnihBrojeva.Add(i);
                 }
             }
-            else
-            {
-
-            }
-            return NizParnihBrojeva;
+            return Ok(NizParnihBrojeva);
         }
+        //{
+            //int index = 0;
+            //int[] NizParnihBrojeva;
+            //if (DrugiBroj < PrviBroj)
+            //{
+            //    NizParnihBrojeva = new int[((DrugiBroj - PrviBroj)/2)];
+            //    for (int i = PrviBroj; i <= DrugiBroj; i += 2)
+            //    {
+            //        NizParnihBrojeva[index] = i;
+            //        index++;
+
+            //    }
+            //}
+        //}
     }
 }
