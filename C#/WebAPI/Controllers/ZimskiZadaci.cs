@@ -153,5 +153,61 @@ namespace WebAPI.Controllers
             return Rezultat;
         }
 
+        [HttpPost]
+        [Route ("Zad8")]
+
+        public int Zad8 (int PrviBroj, int DrugiBroj)
+        {
+            int Rezultat = 0;
+            if (DrugiBroj > PrviBroj)
+            {
+                for (int i = PrviBroj; i <= DrugiBroj; i++)
+                {
+                    if (i%3 == 0)
+                    {
+                        Rezultat += i;
+                    }
+                }
+            } else
+            {
+                for (int i = DrugiBroj; i <=PrviBroj; i++)
+                {
+                    if (i%3 == 0)
+                    {
+                        Rezultat += i;
+                    }
+                }
+            }
+            return Rezultat;
+        }
+
+        [HttpPost]
+        [Route ("Zad9")]
+
+        public int Zad9 (int PrviBroj, int DrugiBroj)
+        {
+            int Rezultat = 0;
+            if (DrugiBroj > PrviBroj)
+            {
+                for (int i = PrviBroj; i <= DrugiBroj; i++)
+                {
+                    if ((i % 3 == 0) && (i % 5 ==0))
+                    {
+                        Rezultat += i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = DrugiBroj; i <= PrviBroj; i++)
+                {
+                    if ((i % 3 == 0) && (i % 5 == 0))
+                    {
+                        Rezultat += i;
+                    }
+                }
+            }
+            return Rezultat;
+        }
     }
 }
