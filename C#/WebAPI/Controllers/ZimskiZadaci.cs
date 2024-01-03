@@ -128,8 +128,29 @@ namespace WebAPI.Controllers
                     NizNeparanihBrojeva[index++] = i;
                 }
             }
-
             return NizNeparanihBrojeva;
+        }
+
+        [HttpPost]
+        [Route ("Zad7")]
+
+        public int Zad7 (int PrviBroj, int DrugiBroj)
+        {
+            int Rezultat = 0;
+            if (DrugiBroj > PrviBroj)
+            {
+                for (int i = PrviBroj; i <= DrugiBroj; i++)
+                {
+                    Rezultat += i;
+                }
+            } else
+            {
+                for (int i = DrugiBroj; i <= PrviBroj; i++)
+                {
+                    Rezultat += i;
+                }
+            }
+            return Rezultat;
         }
 
     }
