@@ -61,44 +61,76 @@ namespace WebAPI.Controllers
             }
             return Rezultat;
         }
+
+
         [HttpPost]
         [Route("Zad5")]
 
-        public IActionResult Zad5(int PrviBroj, int DrugiBroj)
+        public int [] Zadtak5 (int PrviBroj, int DrugiBroj)
         {
-            if (DrugiBroj <= PrviBroj)
+            int[] NizParnihBrojeva = new int[DrugiBroj];
+            int VelicinaNiza = 0;
+            int index = 0;
+
+            if (DrugiBroj > PrviBroj)
             {
-                return BadRequest("Krivi unos, drugi broj mora biti veči od prvog");
-            }
-            List <int> NizParnihBrojeva = new List <int> ();
-            for (int i = PrviBroj; i<=DrugiBroj; i++)
-            {
-                if (i % 2 == 0)
+                VelicinaNiza = (((DrugiBroj-PrviBroj)/2)+1);
+                NizParnihBrojeva = new int[VelicinaNiza];
+                for ( int i=PrviBroj; i<=DrugiBroj; i++)
                 {
-                    NizParnihBrojeva.Add(i);
+                    if (i%2==0)
+                    {
+                        NizParnihBrojeva[index++] = i;
+                    }
+                }
+            } else
+            {
+                VelicinaNiza = (((Math.Abs(PrviBroj-DrugiBroj))/2)+1);
+                NizParnihBrojeva = new int[VelicinaNiza];
+                for( int i = DrugiBroj; i <=PrviBroj; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        NizParnihBrojeva[index++] = i;
+                    }
                 }
             }
-            return Ok(NizParnihBrojeva);
+            return NizParnihBrojeva;
         }
+
         [HttpPost]
         [Route("Zad6")]
 
-        public IActionResult Zad6(int PrviBroj, int DrugiBroj)
+        public int[] Zad6 (int PrviBroj, int DrugiBroj)
         {
-            if (DrugiBroj <= PrviBroj)
+            int[] NizNeparanihBrojeva = new int[DrugiBroj];
+            int index = 0;
+            int VelicinaNiza = 0;
+
+            if (DrugiBroj > PrviBroj)
             {
-                return BadRequest("Krivi unos, drugi broj mora biti veči od prvog");
-            }
-            List<int> NizNeParnihBrojeva = new List<int>();
-            for (int i = PrviBroj; i <= DrugiBroj; i++)
-            {
-                if (i % 2 != 0)
+                VelicinaNiza = (((DrugiBroj - PrviBroj) / 2) + 1);
+                NizNeparanihBrojeva = new int[VelicinaNiza];
+                
+                for (int i = PrviBroj; i <= DrugiBroj; i++)
                 {
-                    NizNeParnihBrojeva.Add(i);
+                    if (i % 2 != 0)
+                    {
+                        NizNeparanihBrojeva[index++] = i;
+                    }
+                } 
+            } else
+            {
+                VelicinaNiza = ((PrviBroj-DrugiBroj)+1);
+                NizNeparanihBrojeva = new int[VelicinaNiza];
+                for (int i = DrugiBroj; i <= PrviBroj; i++)
+                {
+                    NizNeparanihBrojeva[index++] = i;
                 }
             }
-            return Ok(NizNeParnihBrojeva);
 
+            return NizNeparanihBrojeva;
         }
+
     }
 }
