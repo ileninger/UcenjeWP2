@@ -10,18 +10,31 @@ namespace UcenjeCS
     {
         public static void Izvedi ()
         {
-            Console.Write("Unesite cijeli broj: ");
-            var CijeliBroj = int.Parse(Console.ReadLine());
+            //Console.Write("Unesite cijeli broj: ");
+            //var CijeliBroj = int.Parse(Console.ReadLine());
 
-            if (CijeliBroj %1 == 0 )
+            //if (CijeliBroj %1 == 0 )
+            //{
+            //    Console.WriteLine("Unjeli ste cijeli broj");
+
+            //} else
+            //{
+            //    Console.WriteLine("Niste unjeli cijeli broj");
+            //}
+            Console.Write("Unesite prvi broj: ");
+            int PrviBroj = int.Parse(Console.ReadLine());
+            Console.Write("Unesite drugi broj:");
+            int DrugiBroj = int.Parse(Console.ReadLine());
+
+            int Rezultat = 0;
+            if (DrugiBroj > PrviBroj)
             {
-                Console.WriteLine("Unjeli ste cijeli broj");
-
+                Rezultat = Math.Abs(DrugiBroj - PrviBroj);
             } else
             {
-                Console.WriteLine("Niste unjeli cijeli broj");
+                Rezultat = Math.Abs(PrviBroj - DrugiBroj);
             }
-
+            Console.WriteLine($"Rezultat je: {Rezultat}");
 
         }
     }

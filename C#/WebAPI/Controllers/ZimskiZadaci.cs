@@ -1,15 +1,6 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using System.Buffers.Text;
-using System;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Reflection.Metadata;
 
 namespace WebAPI.Controllers
 {
@@ -220,60 +211,32 @@ namespace WebAPI.Controllers
             }
             return Rezultat;
         }
-        ////10. Ruta prima dva parametra koji su cijeli brojevi i vraća dvodimenzionalni niz(matricu) koja sadrži tablicu množenja za dva primljena broja
-        //[HttpPost]
-        //[Route("Zad10")]
+        //10. Ruta prima dva parametra koji su cijeli brojevi i vraća dvodimenzionalni niz(matricu) koja sadrži tablicu množenja za dva primljena broja
+        [HttpPost]
+        [Route("Zad10")]
 
-        //public string Zad10(int PrviBroj, int DrugiBroj)
-        //{
-        //    string[,] TablicaMnozenja = new string[PrviBroj, DrugiBroj]; //Niz koji cemo popunjavati
-        //    StringBuilder MantricaTabliceMnozenjaZaPrikaz = new StringBuilder(); //StringBuilder prikaz matrice - manipulacija stringovima
-        //    for (int i = 0; i < PrviBroj; i++)
-        //    {
-        //        for (int j = 0; j < DrugiBroj; j++)
-        //        {
-        //            TablicaMnozenja[i, j] = ((i + 1) * (j + 1)).ToString();
-        //        }
-        //    }
-        //    for (int i = 0; i < PrviBroj; i++)
-        //    {
-        //        for (int j = 0; j < DrugiBroj; j++)
-        //        {
-        //            MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja + "\t"); //Appended spajanje
-        //        }
-
-        //        MantricaTabliceMnozenjaZaPrikaz.AppendLine(); // Promjena retka u matrici koja se prikazuje
-        //    }
-        //    return MantricaTabliceMnozenjaZaPrikaz.ToString();
-
-        //}
-
-        [HttpGet]
-        [Route("ZimskiZad10")]
-        public string Zad10(int broj1, int broj2)
+        public string Zad10(int PrviBroj, int DrugiBroj)
         {
-            string[,] tablicaMnozenja = new string[broj1, broj2];
-
-            for (int i = 0; i < broj1; i++)
+            string[,] TablicaMnozenja = new string[PrviBroj, DrugiBroj]; //Niz koji cemo popunjavati
+            StringBuilder MantricaTabliceMnozenjaZaPrikaz = new StringBuilder(); //StringBuilder prikaz matrice - manipulacija stringovima
+            for (int i = 0; i < PrviBroj; i++)
             {
-                for (int j = 0; j < broj2; j++)
+                for (int j = 0; j < DrugiBroj; j++)
                 {
-                    tablicaMnozenja[i, j] = ((i + 1) * (j + 1)).ToString();
+                    TablicaMnozenja[i, j] = ((i + 1) * (j + 1)).ToString();
                 }
             }
-
-            StringBuilder matricaNiz = new StringBuilder(); // StringBuilder -> pruža promjenjivi niz znakova
-
-            for (int i = 0; i < broj1; i++)
+            for (int i = 0; i < PrviBroj; i++)
             {
-                for (int j = 0; j < broj2; j++)
+                for (int j = 0; j < DrugiBroj; j++)
                 {
-                    matricaNiz.Append(tablicaMnozenja[i, j] + "\t");
+                    MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja + "\t"); //Appended spajanje
                 }
-                matricaNiz.AppendLine(); // Prelazi na sljedeći redak za novi red(broj1)
-            }
 
-            return matricaNiz.ToString();
+                MantricaTabliceMnozenjaZaPrikaz.AppendLine(); // Promjena retka u matrici koja se prikazuje
+            }
+            return MantricaTabliceMnozenjaZaPrikaz.ToString();
+
         }
 
         [HttpPost]
