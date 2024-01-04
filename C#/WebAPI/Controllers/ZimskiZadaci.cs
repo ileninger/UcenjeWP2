@@ -233,10 +233,23 @@ namespace WebAPI.Controllers
                     MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja[i,j] + "\t"); //Appended spajanje
                 }
 
-                MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja[i]); // Promjena retka u matrici koja se prikazuje
+                MantricaTabliceMnozenjaZaPrikaz.AppendLine(); // Promjena retka u matrici koja se prikazuje
             }
             return MantricaTabliceMnozenjaZaPrikaz.ToString();
+        }
 
+        [HttpPost]
+        [Route("Zad11")]
+
+        public int [] Zad11 (int Broj)
+        {
+            int[] NizBrojeva = new int[(Broj)];
+            int Index = 0;
+            for (int i = Broj; i >=1; i--)
+            {
+                NizBrojeva[Index++] = i;
+            }
+            return NizBrojeva;
         }
     }
 }
