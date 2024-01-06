@@ -230,13 +230,12 @@ namespace WebAPI.Controllers
             {
                 for (int j = 0; j < DrugiBroj; j++)
                 {
-                    MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja + "\t"); //Appended spajanje
+                    MantricaTabliceMnozenjaZaPrikaz.Append(TablicaMnozenja[i,j] + "\t"); //Appended spajanje
                 }
 
                 MantricaTabliceMnozenjaZaPrikaz.AppendLine(); // Promjena retka u matrici koja se prikazuje
             }
             return MantricaTabliceMnozenjaZaPrikaz.ToString();
-
         }
 
         [HttpPost]
@@ -254,7 +253,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route ("Zad 12")]
+        [Route ("Zad12")]
 
         public bool Zad12 (int Broj)
         {
@@ -267,7 +266,33 @@ namespace WebAPI.Controllers
             }
             return true;
         }
+        [HttpGet]
+        [Route ("Zad 13")]
 
+        public string Zad13 (int PrviBroj, int DrugiBroj)
+        {
+            int Rezultat = PrviBroj*DrugiBroj; //Dobivamo središte matrice i od nje se mičemo
+            int[,] CiklickaMatica = new int[PrviBroj, DrugiBroj]; // Ciklicku matticu spremamo u niz
+            StringBuilder PrikazCiklickeMatrice = new StringBuilder(); //Ciklicka matrica za prikaz
+            for (int i = 0;i < PrviBroj; i++)
+            {
+                for (int j = 0; j < DrugiBroj; j++)
+                {
+                    CiklickaMatica[i, j] = Rezultat--; //spremamo vrijednost u polja za 5x5 spremamo 25 kao početnu i od nje se umanjujemo za 1
+                }
+            }
+
+            for (int i = 0; i<PrviBroj; i++)
+            {
+                for(int j = 0; j < DrugiBroj; j++)
+                {
+                    PrikazCiklickeMatrice.Append(CiklickaMatica[(int)i, j]+ "\t"); // prikaz stupaca
+                }
+                PrikazCiklickeMatrice.AppendLine();//Prikaz stupaca
+            }
+            return PrikazCiklickeMatrice.ToString(); 
+
+        }
 
     }
 }

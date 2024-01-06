@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivanl\\Documents\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\ileni\\OneDrive\\Dokumenti\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivanl\\Documents\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\ileni\\OneDrive\\Dokumenti\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivanl\\Documents\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ileni\\OneDrive\\Dokumenti\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\ivanl\\Documents\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\ivanl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivanl\\Documents\\GitHub\\UcenjeWP2\\C#\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\ileni\\OneDrive\\Dokumenti\\GitHub\\UcenjeWP2\\C#\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\ileni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ileni\\OneDrive\\Dokumenti\\GitHub\\UcenjeWP2\\C#\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ivanl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ileni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
