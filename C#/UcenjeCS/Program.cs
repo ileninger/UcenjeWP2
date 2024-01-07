@@ -3,4 +3,4 @@ using UcenjeCS;
 
 //E01UlazIzlaz.Izvedi();
 
-TablicaMnozenja.Izvedi();
+RockPaperScissors.Izvedi();
