@@ -267,26 +267,66 @@ namespace WebAPI.Controllers
             return true;
         }
         [HttpGet]
-        [Route ("Zad 13")]
+        [Route("Zad13")]
 
-        public string Zad13 (int PrviBroj, int DrugiBroj)
+        public string Zad13(int Redovi, int Stupci)
         {
-            int Rezultat = PrviBroj*DrugiBroj; //Dobivamo središte matrice i od nje se mičemo
-            int[,] CiklickaMatica = new int[PrviBroj, DrugiBroj]; // Ciklicku matticu spremamo u niz
+            int Brojac = 1; //Rezultat koji spremamo u matricu
+                            // RedPocetak, RedKrajm StupacPocetak i StupacKraj definiraju rubne uvjete
+
+            int RedPoc = 0, RedKraj = Redovi - 1;
+            int KolPoc = 0, KolKraj = Stupci - 1;
+
+            int[,] CiklickaMatica = new int[Redovi, Stupci]; // Ciklicku matticu spremamo u niz
             StringBuilder PrikazCiklickeMatrice = new StringBuilder(); //Ciklicka matrica za prikaz
-            for (int i = 0;i < PrviBroj; i++)
+
+            //if dok se ne popune sva mjesta u matrici
+
+            if (RedPoc <= RedKraj && KolPoc <= KolKraj)
             {
-                for (int j = 0; j < DrugiBroj; j++)
+                //Popunjavamo najdonji redak
+                for (int j = KolKraj;  j >= KolPoc; j--) {
+                    CiklickaMatica[RedKraj, j] = Brojac++;
+                }
+                RedKraj--;
+
+                // Popinjavamo Lijevi stupac
+
+                for (int i = RedKraj; i >= RedPoc; i--)
                 {
-                    CiklickaMatica[i, j] = Rezultat--; //spremamo vrijednost u polja za 5x5 spremamo 25 kao početnu i od nje se umanjujemo za 1
+                    CiklickaMatica[i, KolPoc] = Brojac++;
+                }
+                KolPoc++;
+
+                // Popunjavamo gornji redak - moramo se osigurat da se gleda najgornji redak preko if-a
+                if (RedPoc <= RedKraj)
+                {
+                    for (int j = KolPoc; j <=KolKraj; j++)
+                    {
+                        CiklickaMatica[RedPoc,j] = Brojac++;
+                    }
+                    RedPoc++;
+                }
+
+                // Popunjavamo desni stupac, osiguramo se preko if-a da dode na najzadnje slobodno mjesto
+
+                if (KolPoc <= KolKraj)
+                {
+                    for (int i = RedPoc; i <=RedKraj; i++)
+                    {
+                        CiklickaMatica[i, KolKraj] = Brojac++;
+                    }
+                    KolKraj--;
                 }
             }
+          
 
-            for (int i = 0; i<PrviBroj; i++)
+            //Ispis matrice
+            for (int i = 0; i<Redovi; i++)
             {
-                for(int j = 0; j < DrugiBroj; j++)
+                for(int j = 0; j < Stupci; j++)
                 {
-                    PrikazCiklickeMatrice.Append(CiklickaMatica[(int)i, j]+ "\t"); // prikaz stupaca
+                    PrikazCiklickeMatrice.Append(CiklickaMatica[i, j]+ "\t"); // prikaz stupaca
                 }
                 PrikazCiklickeMatrice.AppendLine();//Prikaz stupaca
             }
