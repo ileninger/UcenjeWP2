@@ -282,7 +282,7 @@ namespace WebAPI.Controllers
 
             //if dok se ne popune sva mjesta u matrici
 
-            if (RedPoc <= RedKraj && KolPoc <= KolKraj)
+            while (RedPoc <= RedKraj && KolPoc <= KolKraj)
             {
                 //Popunjavamo najdonji redak
                 for (int j = KolKraj;  j >= KolPoc; j--) {
