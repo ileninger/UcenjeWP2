@@ -23,6 +23,31 @@ namespace UcenjeCS
             Thread.Sleep(1000);
             Console.WriteLine("What would you like to do?");
 
+            bool Start = true;
+            string UserChoise;
+
+            //string [] Calendar  
+
+            while ( Start)
+            {
+                Console.WriteLine("Choise A to Add, U to Update, V to View, D to Delete, X to Exit: ");
+                UserChoise = Console.ReadLine();
+                UserChoise = UserChoise.ToUpper();
+
+                // Sada odabiremo radnju ovisno o korisnikovom odabiru
+
+                switch (UserChoise )
+                {
+                    case "X":
+                    
+                        Start = false;
+                        break;
+
+                    
+                }
+                
+            }
+
 
         }
     }
