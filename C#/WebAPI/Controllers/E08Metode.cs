@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
 
         // DZ
         // Krierati rutu zad2 koja prima 4 cijela broja
-        // i vra?a razliku prvi+drugi i tre?i+?etvrti
+        // i vraća razliku prvi+drugi i treći+četvrti
         // Koristite kreiranu metodu za zbroj dvaju brojeva
 
         [HttpGet]
@@ -31,5 +31,32 @@ namespace WebAPI.Controllers
             return ((Zbroji(PrviBroj, DrugiBroj) - (Zbroji(TreciBroj, CetvrtiBroj))));
         
         }
+
+        // Krierati rutu zad3 koja prima ime grada i slovo.
+        // Ruta vraća broj pojavljivanja slova u primljenom imenu grada
+        // Koristiti metode
+
+        [HttpGet]
+        [Route("Zad3")]
+
+        public int Zad3 (string ImeGrada, char Slovo)
+        {
+            
+            return Brojanje(ImeGrada,Slovo);
+        }
+        private int Brojanje (string Grad,char TrazenoSlovo)
+        {
+            int Rezultat = 0;
+            foreach (char c in Grad)
+            {
+                if (Char.ToLower(c) == Char.ToLower(TrazenoSlovo))
+                {
+                    Rezultat++;
+                }
+            }
+            return Rezultat;
+
+        }
+
     }
 }
