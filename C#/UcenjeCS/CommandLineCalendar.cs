@@ -8,9 +8,8 @@ namespace UcenjeCS
 {
     internal class CommandLineCalendar
     {
-        public static void Izvedi()
+        static void Wellcome()
         {
-            //In this project, we’ll build a basic calendar that the user will be able to interact with from the command line. 
             string UserName = "Ivan";
 
             Console.WriteLine($"Wellcome back {UserName}");
@@ -22,7 +21,12 @@ namespace UcenjeCS
             Console.WriteLine("Calendar is starting");
             Thread.Sleep(1000);
             Console.WriteLine("What would you like to do?");
+        }
+        public static void Izvedi()
+        {
+            //In this project, we’ll build a basic calendar that the user will be able to interact with from the command line. 
 
+            Wellcome();
             bool Start = true;
             string UserChoise;
 
