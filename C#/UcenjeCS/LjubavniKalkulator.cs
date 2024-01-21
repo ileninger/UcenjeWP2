@@ -12,10 +12,11 @@ namespace UcenjeCS
         {
             string PrvoIme = UnesiIme("Unesite prvo ime: ");
             string DrugoIme = UnesiIme("Unesite drugo ime: ");
+            int ZbrojInt = Kalkulator(PocetniNiz(PrvoIme, DrugoIme));
 
-            Console.WriteLine(Kalkulator(PocetniNiz (PrvoIme,DrugoIme)));
+         
 
-
+            Console.WriteLine(KonacniRezultat(Kalkulator(PocetniNiz(PrvoIme, DrugoIme))));
         }
       
         private static string UnesiIme(string v)
@@ -64,7 +65,7 @@ namespace UcenjeCS
             return NizZaAnalizu;
         }
 
-        private static string Kalkulator (int[] PrimjeniNiz)
+        private static int Kalkulator (int[] PrimjeniNiz)
         {
             ///Definiramo "pozicije s kojih nam ide brojac unutar niza Min i Max
             //int Min = 0;
@@ -73,38 +74,32 @@ namespace UcenjeCS
             int Brojac = 0;
             int Rez;
             int DuzinaPocetnogNiza = PrimjeniNiz.Length;
-            int[] Rezultat = new int[DuzinaPocetnogNiza / 2 + (DuzinaPocetnogNiza % 2)]; ;
+            int[] Rezultat = new int[DuzinaPocetnogNiza / 2 + (DuzinaPocetnogNiza % 2)]; 
+            for (int i = 0; i < DuzinaPocetnogNiza / 2; i++)
+            {
+                Rezultat[i] = PrimjeniNiz[i] + PrimjeniNiz[DuzinaPocetnogNiza - i - 1];
+            }
 
-            //while (Min < Max)
-            //{
-                //int LijeviDio = PrimjeniNiz[Min];
-                //int DesniDio = PrimjeniNiz[Max];
+            if (DuzinaPocetnogNiza % 2 == 1)
+            {
+                Rezultat[DuzinaPocetnogNiza / 2] = PrimjeniNiz[DuzinaPocetnogNiza / 2];
+            }
 
-                //for (int i = Min; i < Max; i++)
-                //{
-                //    Rezultat[i] = LijeviDio + (DesniDio-i-1);
-                //}
-                //Min++;
-                //Max--;
+            Rez = int.Parse(string.Concat(Rezultat));
 
-
-                for (int i = 0; i < DuzinaPocetnogNiza / 2; i++)
-                {
-                    Rezultat[i] = PrimjeniNiz[i] + PrimjeniNiz[DuzinaPocetnogNiza - i - 1];
-                }
-
-                if (DuzinaPocetnogNiza % 2 == 1)
-                {
-                    Rezultat[DuzinaPocetnogNiza / 2] = PrimjeniNiz[DuzinaPocetnogNiza / 2];
-                }
-
-
-
-            //}
-
-            return string.Join(" ",Rezultat);
+            return Rez;
         }
 
+        private static int KonacniRezultat(int v)
+        {
+
+            if (v > 100)
+            {
+                return KonacniRezultat (v);
+            }
+            return v + KonacniRezultat(v - 1);
+        }
+        
 
     }
 }
