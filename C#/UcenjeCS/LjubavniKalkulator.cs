@@ -12,13 +12,13 @@ namespace UcenjeCS
         {
             string PrvoIme = UnesiIme("Unesite prvo ime: ");
             string DrugoIme = UnesiIme("Unesite drugo ime: ");
-            int ZbrojInt = Kalkulator(PocetniNiz(PrvoIme, DrugoIme));
+            //int ZbrojInt = Kalkulator(PocetniNiz(PrvoIme, DrugoIme));
 
-         
 
-            Console.WriteLine(KonacniRezultat(Kalkulator(PocetniNiz(PrvoIme, DrugoIme))));
+
+            Console.WriteLine(Kalkulator(PocetniNiz(PrvoIme, DrugoIme)));
         }
-      
+
         private static string UnesiIme(string v)
         {
             for (; ; )
@@ -37,12 +37,12 @@ namespace UcenjeCS
         }
 
 
-        private static int[] PocetniNiz (string PrvoIme, string DrugoIme ) 
+        private static int[] PocetniNiz(string PrvoIme, string DrugoIme)
         {
             string SpojenaImena = PrvoIme + DrugoIme;
             int[] NizZaAnalizu = new int[SpojenaImena.Length];
             int i = 0;
-            
+
 
             // Sada cemo prebrojati koliko se puta koje slovo pojavljuje u nizu koji se sastoji od prvog i  drugog imena
 
@@ -60,12 +60,12 @@ namespace UcenjeCS
                 NizZaAnalizu[i++] = Brojac;
             }
 
-            Console.WriteLine(SpojenaImena + "\n" + string.Join(" ",NizZaAnalizu));
+            Console.WriteLine(SpojenaImena + "\n" + string.Join(" ", NizZaAnalizu));
 
             return NizZaAnalizu;
         }
 
-        private static int Kalkulator (int[] PrimjeniNiz)
+        private static int Kalkulator(int[] PrimjeniNiz)
         {
             ///Definiramo "pozicije s kojih nam ide brojac unutar niza Min i Max
             //int Min = 0;
@@ -74,7 +74,7 @@ namespace UcenjeCS
             int Brojac = 0;
             int Rez;
             int DuzinaPocetnogNiza = PrimjeniNiz.Length;
-            int[] Rezultat = new int[DuzinaPocetnogNiza / 2 + (DuzinaPocetnogNiza % 2)]; 
+            int[] Rezultat = new int[DuzinaPocetnogNiza / 2 + (DuzinaPocetnogNiza % 2)];
             for (int i = 0; i < DuzinaPocetnogNiza / 2; i++)
             {
                 Rezultat[i] = PrimjeniNiz[i] + PrimjeniNiz[DuzinaPocetnogNiza - i - 1];
@@ -90,16 +90,14 @@ namespace UcenjeCS
             return Rez;
         }
 
-        private static int KonacniRezultat(int v)
-        {
+        //private static int KonacniRezultat(int v)
+        //{
 
-            if (v > 100)
-            {
-                return KonacniRezultat (v);
-            }
-            return v + KonacniRezultat(v - 1);
-        }
-        
-
+        //    if (v > 100)
+        //    {
+        //        return KonacniRezultat(v);
+        //    }
+        //    return v + KonacniRezultat(v - 1);
+        //}
     }
 }
