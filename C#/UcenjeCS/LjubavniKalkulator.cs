@@ -14,9 +14,11 @@ namespace UcenjeCS
             string DrugoIme = UnesiIme("Unesite drugo ime: ");
             //int ZbrojInt = Kalkulator(PocetniNiz(PrvoIme, DrugoIme));
 
+            //int[] KonacniRezultat = Kalkulator(PocetniNiz(PrvoIme, DrugoIme));
+            string KonacniRezultat = string.Join(" ", VratiNiz(PocetniNiz(PrvoIme,DrugoIme)));
 
 
-            Console.WriteLine(Kalkulator(PocetniNiz(PrvoIme, DrugoIme)));
+            Console.WriteLine(KonacniRezultat);
         }
 
         private static string UnesiIme(string v)
@@ -65,7 +67,7 @@ namespace UcenjeCS
             return NizZaAnalizu;
         }
 
-        private static int Kalkulator(int[] PrimjeniNiz)
+        private static int [] Kalkulator(int[] PrimjeniNiz)
         {
             ///Definiramo "pozicije s kojih nam ide brojac unutar niza Min i Max
             //int Min = 0;
@@ -78,26 +80,37 @@ namespace UcenjeCS
             for (int i = 0; i < DuzinaPocetnogNiza / 2; i++)
             {
                 Rezultat[i] = PrimjeniNiz[i] + PrimjeniNiz[DuzinaPocetnogNiza - i - 1];
+                PrimjeniNiz[i] = Rezultat[i];
             }
 
             if (DuzinaPocetnogNiza % 2 == 1)
             {
                 Rezultat[DuzinaPocetnogNiza / 2] = PrimjeniNiz[DuzinaPocetnogNiza / 2];
+                PrimjeniNiz = Rezultat;
             }
 
-            Rez = int.Parse(string.Concat(Rezultat));
+            //Rez = int.Parse(string.Concat(Rezultat));
 
-            return Rez;
+            return PrimjeniNiz;
         }
 
-        //private static int KonacniRezultat(int v)
-        //{
+        private static int[] VratiNiz (int[] PrimjeniNiz)
+        {
+            int NovaVelicinaNiza = PrimjeniNiz.Length / 2 + PrimjeniNiz.Length % 2;
+            int[] NoviAnaliziraniNiz = new int[NovaVelicinaNiza];
+            
+            Kalkulator(PrimjeniNiz);
 
-        //    if (v > 100)
-        //    {
-        //        return KonacniRezultat(v);
-        //    }
-        //    return v + KonacniRezultat(v - 1);
-        //}
+            Array.Copy(PrimjeniNiz,NoviAnaliziraniNiz,Math.Min(PrimjeniNiz.Length,NovaVelicinaNiza));
+
+            if (NoviAnaliziraniNiz.Length == 2)
+            {
+                return NoviAnaliziraniNiz;
+            }
+
+            Console.WriteLine(string.Join(" ",NoviAnaliziraniNiz));
+            return VratiNiz(NoviAnaliziraniNiz);
+        }
+        
     }
 }
