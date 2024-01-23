@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ namespace UcenjeCS
             string KonacniRezultat = string.Join(" ", VratiNiz(PocetniNiz(PrvoIme,DrugoIme)));
 
 
-            Console.WriteLine(KonacniRezultat);
+            Console.WriteLine($"{PrvoIme} i {DrugoIme} vole se:  {KonacniRezultat} %");
+            Console.ReadKey();
         }
 
         private static string UnesiIme(string v)
@@ -77,16 +79,43 @@ namespace UcenjeCS
             int Rez;
             int DuzinaPocetnogNiza = PrimjeniNiz.Length;
             int[] Rezultat = new int[DuzinaPocetnogNiza / 2 + (DuzinaPocetnogNiza % 2)];
+            int[] RezultatNeparnogNiza = new int[PrimjeniNiz.Length * 2];
             for (int i = 0; i < DuzinaPocetnogNiza / 2; i++)
             {
+                
                 Rezultat[i] = PrimjeniNiz[i] + PrimjeniNiz[DuzinaPocetnogNiza - i - 1];
                 PrimjeniNiz[i] = Rezultat[i];
             }
 
             if (DuzinaPocetnogNiza % 2 == 1)
             {
-                Rezultat[DuzinaPocetnogNiza / 2] = PrimjeniNiz[DuzinaPocetnogNiza / 2];
-                PrimjeniNiz = Rezultat;
+
+                for (int j = 0; j < DuzinaPocetnogNiza; j++)
+                {
+                    int broj = RezultatNeparnogNiza[j];
+                    if (broj > 10 && broj < 99)
+                    {
+                        // Razdvajanje znamenki
+                        int prvaZnamenka = broj / 10;
+                        int drugaZnamenka = broj % 10;
+
+                        // Pohrana rezultata u novi niz
+                        RezultatNeparnogNiza[j * 2] = prvaZnamenka;
+                        RezultatNeparnogNiza[j * 2 + 1] = drugaZnamenka;
+                        PrimjeniNiz = RezultatNeparnogNiza;
+
+                    }
+                    else
+                    {
+                        RezultatNeparnogNiza[j*2]= broj;
+                        RezultatNeparnogNiza[j*2+1] = 0;
+                    }
+
+                }
+
+                //Console.WriteLine("*************");
+                //Console.WriteLine(Rezultat);
+                //Console.WriteLine("*************");
             }
 
             //Rez = int.Parse(string.Concat(Rezultat));
@@ -103,13 +132,38 @@ namespace UcenjeCS
 
             Array.Copy(PrimjeniNiz,NoviAnaliziraniNiz,Math.Min(PrimjeniNiz.Length,NovaVelicinaNiza));
 
-            if (NoviAnaliziraniNiz.Length == 2)
+            if (NoviAnaliziraniNiz.Length == 1)
             {
                 return NoviAnaliziraniNiz;
             }
 
             Console.WriteLine(string.Join(" ",NoviAnaliziraniNiz));
-            return VratiNiz(NoviAnaliziraniNiz);
+            return VratiNiz(RazdvajanjeBrojeva(NoviAnaliziraniNiz));
+        }
+
+        private static int[] RazdvajanjeBrojeva (int[] PrimjeniNiz)
+        {
+            int DvoznaMenkastiBroj = Array.FindIndex(PrimjeniNiz, n => n >= 10 && n <= 99);
+            int [] NoviRazvijeniNiz = new int[PrimjeniNiz.Length + 1];
+
+            if (DvoznaMenkastiBroj == Array.FindIndex(PrimjeniNiz, n => n >= 10 && n <= 99))
+            {
+                if (DvoznaMenkastiBroj == -1)
+                {
+                    return PrimjeniNiz;
+                }
+                int BrojOdDvijeZnameke = PrimjeniNiz[DvoznaMenkastiBroj];
+                int DrugZnamenka = BrojOdDvijeZnameke / 10;
+                int PrvaZnameka = BrojOdDvijeZnameke % 10;
+
+                Array.Copy(PrimjeniNiz, NoviRazvijeniNiz, DvoznaMenkastiBroj);
+                NoviRazvijeniNiz[DvoznaMenkastiBroj] = DrugZnamenka;
+                NoviRazvijeniNiz[DvoznaMenkastiBroj + 1] = PrvaZnameka;
+
+                Array.Copy(PrimjeniNiz, DvoznaMenkastiBroj + 1, NoviRazvijeniNiz, DvoznaMenkastiBroj+ 2, PrimjeniNiz.Length - DvoznaMenkastiBroj- 1);
+
+            }
+            return RazdvajanjeBrojeva(NoviRazvijeniNiz);
         }
         
     }
