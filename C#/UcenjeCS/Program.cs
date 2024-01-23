@@ -3,4 +3,7 @@ using UcenjeCS;
 
 //E01UlazIzlaz.Izvedi();
 
-RockPaperScissors.Izvedi();
+//MatijaKalkulator.Izvedi();
+LjubavniKalkulator.Izvedi();
+//Djeljenje_s_10.Izvedi();
+//AntonioPomoc.Izvedi();
