@@ -127,15 +127,15 @@ namespace UcenjeCS
         {
             int NovaVelicinaNiza = PrimjeniNiz.Length / 2 + PrimjeniNiz.Length % 2;
             int[] NoviAnaliziraniNiz = new int[NovaVelicinaNiza];
-            
+
+            if (PrimjeniNiz.Length == 2)
+            {
+                return PrimjeniNiz;
+            }
+
             Kalkulator(PrimjeniNiz);
 
             Array.Copy(PrimjeniNiz,NoviAnaliziraniNiz,Math.Min(PrimjeniNiz.Length,NovaVelicinaNiza));
-
-            if (NoviAnaliziraniNiz.Length == 1)
-            {
-                return NoviAnaliziraniNiz;
-            }
 
             Console.WriteLine(string.Join(" ",NoviAnaliziraniNiz));
             return VratiNiz(RazdvajanjeBrojeva(NoviAnaliziraniNiz));
