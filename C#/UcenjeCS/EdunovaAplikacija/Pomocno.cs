@@ -59,7 +59,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
             while (true)
             {
-                Console.WriteLine(poruka);
+                Console.Write(poruka);
                 try
                 {
                     i = decimal.Parse(Console.ReadLine());
@@ -90,6 +90,12 @@ namespace UcenjeCS.EdunovaAplikacija
                 }
                 Console.WriteLine(greska);
             }
+        }
+
+        internal static bool UcitajBool(string poruka)
+        {
+            Console.Write(poruka);
+            return Console.ReadLine().Trim().ToLower().Equals("da") ? true : false;
         }
     }
 }
