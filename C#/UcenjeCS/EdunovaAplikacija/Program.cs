@@ -69,6 +69,8 @@ namespace UcenjeCS.EdunovaAplikacija
 
         }
 
+        //*****************POLAZNICI*****************//
+
         private void IzbornikRadSaPolaznicima()
         {
             Console.WriteLine("1. Prikaži sve polaznike: ");
@@ -85,21 +87,21 @@ namespace UcenjeCS.EdunovaAplikacija
                 "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
-                    Console.WriteLine("Odabrali ste prikaz svih unesenih predavača");
-                    PrikaziSvePredavace();
+                    Console.WriteLine("Odabrali ste prikaz svih unesenih polazicima");
+                    PrikaziSvePolaznike();
                     IzbornikRadSaPolaznicima();
                     break;
                 case 2:
                     Console.WriteLine("Odabrali ste dodavanje predavača");
-                    DodajNovogPredavaca();
+                    DodajNovogPolaznika();
                     break;
                 case 3:
                     Console.WriteLine("Odabrali ste uređivanje predavača");
-                    UrediSmjer();
+                    UrediPolaznika();
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste brisanje predavača");
-                    IzbrisiSmjer();
+                    IzbrisiPolaznika();
                     break;
                 case 5:
                     Console.WriteLine("Povratak na prethodni izbornik");
@@ -111,6 +113,52 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
             };
         }
+
+        private void PrikaziSvePolaznike()
+        {
+            var i = 0;
+            Polaznici.ForEach(s =>
+            {
+                Console.WriteLine(++i + "." + s);
+            });
+            Console.WriteLine("**********************"); ;
+        }
+
+        private void DodajNovogPolaznika()
+        {
+            Polaznici.Add(new Polaznik()
+            {
+                Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra polaznika: ", "Unos mora biti pozitivni cijeli broj"),
+                Ime = Pomocno.UcitajString("Unesi ime polaznika: ", "Unos obavezan"),
+                Prezime = Pomocno.UcitajString("Unesite prezime polaznika: ", "Unos obavezan"),
+                Email = Pomocno.UcitajString("Unesite polaznikov email:", "Unos obavezan"),
+                Oib = Pomocno.UcitajString("Unesite polaznikov OiB: ", "Unos obavezan"),
+                BrojUgovora = Pomocno.UcitajString("Unesite polaznikov broj ugovora: ", "Unos obavezan"),
+            });
+            IzbornikRadSaPolaznicima();
+        }
+
+        private void UrediPolaznika()
+        {
+            PrikaziSvePolaznike();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Polaznici.Count());
+            var s = Polaznici[index - 1];
+            s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ", "Unos mora biti pozitivni cijeli broj");
+            s.Ime = Pomocno.UcitajString(s.Ime + "Unesi  promljeneno ime predavača", "Unos obavezan" + s.Ime);
+            s.Prezime = Pomocno.UcitajString(s.Prezime + "Unesi promljenjeno prezime predavača ", "Unos obavezan" + s.Prezime);
+            s.Email = Pomocno.UcitajString(s.Email + "Unesi promljenjen Email predavača", "Unos obavezan" + s.Email);
+            s.Oib = Pomocno.UcitajString(s.Oib + "Unesi promljenji oib predavača", "Unos obavezan" + s.Oib);
+            s.BrojUgovora = Pomocno.UcitajString(s.BrojUgovora + "Unesi promljenji Iban predavača", "Unos obavezan" + s.BrojUgovora);
+            IzbornikRadSaPolaznicima();
+        }
+
+        private void IzbrisiPolaznika()
+        {
+            PrikaziSvePolaznike();
+            Polaznici.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Polaznici.Count()));
+            IzbornikRadSaPolaznicima();
+        }
+
 
         //*****************PREDAVAČI*****************//
         private void IzbornikRadSaPredavacima()
@@ -139,11 +187,11 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
                 case 3:
                     Console.WriteLine("Odabrali ste uređivanje predavača");
-                    UrediSmjer();
+                    UrediPredavaca();
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste brisanje predavača");
-                    IzbrisiSmjer();
+                    UrediSmjer();
                     break;
                 case 5:
                     Console.WriteLine("Povratak na prethodni izbornik");
@@ -200,7 +248,7 @@ namespace UcenjeCS.EdunovaAplikacija
         private void IzbrisiPredavaca()
         {
             PrikaziSvePredavace();
-            Predavaci.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Smjerovi.Count()));
+            Predavaci.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Polaznici.Count()));
             IzbornikRadSaSmjerovima(); ;
         }
 
@@ -234,11 +282,11 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
                 case 3:
                     Console.WriteLine("Odabrali ste uređivanje smjera");
-                    UrediPredavaca();
+                    UrediSmjer();
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste brisanje smjera");
-                    IzbrisiPredavaca();
+                    IzbrisiSmjer();
                     break;
                 case 5:
                     Console.WriteLine("Povratak na prethodni izbornik");
