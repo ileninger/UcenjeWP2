@@ -52,19 +52,43 @@ namespace UcenjeCS.EdunovaAplikacija
 
             }
         }
-        public static string UcitajString(string poruka)
+
+        public static decimal UcitajDecimalniBroj (string poruka, string greska)
         {
-            string s;
+            decimal i;
+
+            while (true)
+            {
+                Console.WriteLine(poruka);
+                try
+                {
+                    i = decimal.Parse(Console.ReadLine());
+                    if (i > 0)
+                    {
+                        return i;
+                    }
+                    Console.WriteLine(greska);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(greska);
+                }
+            }
+
+        }
+        public static string UcitajString(string poruka,string greska)
+        {
+            string s = "";
             while (true)
             {
                 Console.Write(poruka);
                 s = Console.ReadLine();
-                if (s.Trim().Length == 0)
+                if (s != null && s.Trim().Length > 0)
                 {
-                    Console.WriteLine("Obavezan unos");
-                    continue;
+                    return s;
+
                 }
-                return s;
+                Console.WriteLine(greska);
             }
         }
     }
