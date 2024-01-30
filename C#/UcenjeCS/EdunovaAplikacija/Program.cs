@@ -35,7 +35,8 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void OdabirStavkeGlavnogIzbornika()
         {
-            switch (Pomocno.UcitajInt("Unesi izbor: "))
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+                "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
                     Console.WriteLine("Odabrali ste rad sa smjerovima");
@@ -73,7 +74,8 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void OdabirStavkeIzbornikPredavac()
         {
-            switch (Pomocno.UcitajInt("Unesi izbor: "))
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+                "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
                     Console.WriteLine("Odabrali ste prikaz svih unesenih predavača");
@@ -108,14 +110,14 @@ namespace UcenjeCS.EdunovaAplikacija
         {
             Predavaci.Add(new Predavac()
             {
-                Sifra = Pomocno.UcitajInt("Unesi šifru predavaca: "),
+                Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra predavaca: ", "Unos mora biti pozitivni cijeli broj"),
                 Ime = Pomocno.UcitajString("Unesi ime predavaca: "),
                 Prezime  = Pomocno.UcitajString ("Unesite prezime predavaca: "),
                 Email = Pomocno.UcitajString ("Unesite predavačev email:"),
                 Oib = Pomocno.UcitajString("Unesite predavačev OiB:"),
                 Iban = Pomocno.UcitajString("Unesite predavačev Iban:"),
             });
-            IzbornikRadSaSmjerovima(); 
+            IzbornikRadSaPredavacima(); 
         }
 
         private void PrikaziSvePredavace()
@@ -126,6 +128,29 @@ namespace UcenjeCS.EdunovaAplikacija
                 Console.WriteLine(++i + "." + s);
             });
             Console.WriteLine("**********************"); ;
+        }
+
+        private void UrediPredavaca()
+        {
+
+            PrikaziSvePredavace();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Predavaci.Count());
+            var s = Predavaci[index - 1];
+            s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ","Unos mora biti pozitivni cijeli broj");
+            s.Ime = Pomocno.UcitajString(s.Ime + "Unesi promljenji naziv " + s.Ime);
+            s.Prezime = Pomocno.UcitajString(s.Prezime + "Unesi promljenji naziv " + s.Prezime);
+            s.Email = Pomocno.UcitajString(s.Email + "Unesi promljenji naziv " + s.Email);
+            s.Oib = Pomocno.UcitajString(s.Oib + "Unesi promljenji naziv " + s.Oib);
+            s.Iban = Pomocno.UcitajString(s.Iban + "Unesi promljenji naziv " + s.Iban);
+            IzbornikRadSaSmjerovima(); ;
+        }
+
+
+        private void IzbrisiPredavaca()
+        {
+            PrikaziSvePredavace();
+            Predavaci.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Smjerovi.Count()));
+            IzbornikRadSaSmjerovima(); ;
         }
 
         private void IzbornikRadSaSmjerovima()
@@ -140,9 +165,12 @@ namespace UcenjeCS.EdunovaAplikacija
 
 
         }
+
+        //*****************SMJEROVI*****************//
         private void OdabriStavkeIzbornikSmjera()
         {
-            switch (Pomocno.UcitajInt("Unesi izbor: "))
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+                "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
                     Console.WriteLine("Odabrali ste prikaz svih unesenih smjerova");
@@ -172,39 +200,16 @@ namespace UcenjeCS.EdunovaAplikacija
             }
         }
 
-        private void IzbrisiPredavaca()
+        private void DodajNoviSmjer()
         {
-            PrikaziSvePredavace();
-            Predavaci.RemoveAt(Pomocno.UcitajInt("Odaberi smjer za brisanje: "));
-            IzbornikRadSaSmjerovima(); ;
-        }
 
-        private void UrediPredavaca()
-        {
-            PrikaziSvePredavace();
-            var s = Predavaci[Pomocno.UcitajInt("Odaberi predavača za promjenu: ") - 1];
-            s.Sifra = Pomocno.UcitajInt(s.Sifra + "Unesi promljenjenu šifru: ");
-            s.Ime = Pomocno.UcitajString(s.Ime + "Unesi promljenji naziv " + s.Ime);
-            s.Prezime = Pomocno.UcitajString(s.Prezime + "Unesi promljenji naziv " + s.Prezime);
-            s.Email = Pomocno.UcitajString(s.Email+ "Unesi promljenji naziv " + s.Email);
-            s.Oib = Pomocno.UcitajString(s.Oib + "Unesi promljenji naziv " + s.Oib);
-            s.Iban = Pomocno.UcitajString(s.Iban+ "Unesi promljenji naziv " + s.Iban);
-            IzbornikRadSaSmjerovima(); ;
-        }
-
-        private void IzbrisiSmjer()
-        {
-            PrikaziSveSmjerove();
-            Smjerovi.RemoveAt(Pomocno.UcitajInt("Odaberi smjer za brisanje: "));
-            IzbornikRadSaSmjerovima();
-        }
-
-        private void UrediSmjer()
-        {
-            PrikaziSveSmjerove();
-            var s = Smjerovi[Pomocno.UcitajInt("Odaberi smjer za promjenu: ") - 1];
-            s.Sifra = Pomocno.UcitajInt(s.Sifra + "Unesi promljenjenu šifru: ");
-            s.Naziv = Pomocno.UcitajString(s.Naziv + "Unesi promljenji naziv " + s.Naziv);
+            Smjerovi.Add(new Smjer()
+            {
+                Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera: ", "Unos mora biti pozitivni cijeli broj"),
+                Naziv = Pomocno.UcitajString("Unesi naziv smjera: "),
+                BrojSati = Pomocno.UcitajCijeliBroj("Unesi broj sati određenog smjera: ", "Unos mora biti cijeli broj")
+                // ucitat ostale smjerove
+            }); ;
             IzbornikRadSaSmjerovima();
         }
 
@@ -218,17 +223,28 @@ namespace UcenjeCS.EdunovaAplikacija
             Console.WriteLine("**********************");
         }
 
-        private void DodajNoviSmjer()
+        private void UrediSmjer()
         {
-
-            Smjerovi.Add(new Smjer()
-            {
-                Sifra = Pomocno.UcitajInt("Unesi šifru smjera: "),
-                Naziv = Pomocno.UcitajString("Unesi naziv smjera: ")
-                // ucitat ostale smjerove
-            });
+            PrikaziSveSmjerove();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj smjera: ", "Nije dobar odabir", 1, Smjerovi.Count());
+            var s = Smjerovi[index- 1];
+            s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ",
+                "Unos mora biti pozitivni cijeli broj");
+            s.Naziv = Pomocno.UcitajString(s.Naziv + "Unesi promljenji naziv " + s.Naziv);
             IzbornikRadSaSmjerovima();
         }
+
+        private void IzbrisiSmjer()
+        {
+            PrikaziSveSmjerove();
+            Smjerovi.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj smjera: ", "Nije dobar odabir", 1, Smjerovi.Count()));
+            IzbornikRadSaSmjerovima();
+        }
+
+
+
+
+
 
         private void PozdravnaPoruka()
         {

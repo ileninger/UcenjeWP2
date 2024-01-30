@@ -8,20 +8,46 @@ namespace UcenjeCS.EdunovaAplikacija
 {
     internal class Pomocno
     {
-        public static int UcitajInt(string poruka)
+        public static int UcitajRasponBrojeva(string poruka, string greska,int poc, int kraj)
         {
             int i;
-            string s;
             while (true)
             {
                 Console.Write(poruka);
                 try
                 {
-                    return int.Parse(Console.ReadLine());
+                    i = int.Parse(Console.ReadLine());
+                    if (i >= poc && i <= kraj)
+                    {
+                        return i;
+                    }
+                    Console.WriteLine(greska);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Krivi u");
+                    Console.WriteLine(greska);
+                }
+            }
+        }
+
+        public static int UcitajCijeliBroj(string poruka, string greska)
+        {
+            int i;
+            while (true)
+            {
+                Console.Write(poruka);
+                try
+                {
+                    i = int.Parse(Console.ReadLine());
+                    if (i > 0)
+                    {
+                        return i;
+                    }
+                    Console.WriteLine(greska);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(greska);
                 }
 
             }

@@ -12,7 +12,7 @@ namespace UcenjeCS.EdunovaAplikacija.Model
 
         public override string ToString()
         {
-            return Ime;
+            return "Ime: " + Ime + " Prezime: " + Prezime + " OiB: " + Oib + " Email: " + Email + " Iban: " + Iban;
         }
 
     }
