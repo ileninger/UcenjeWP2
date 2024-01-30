@@ -11,15 +11,21 @@ namespace UcenjeCS.EdunovaAplikacija
     {
         private List<Smjer> Smjerovi;
         private List<Predavac> Predavaci;
+        private List<Polaznik> Polaznici;
 
         public Program()
         {
+            //Definiranje listi koje koristimo unutar programa
             Smjerovi = new List<Smjer>();
             Predavaci = new List<Predavac>();
+            Polaznici = new List<Polaznik>();
+
             PozdravnaPoruka();
             GlavniIzbornik();
 
         }
+
+        //*****************GLAVNI IZBORNIK*****************//
 
         private void GlavniIzbornik()
         {
@@ -48,6 +54,7 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
                 case 3:
                     Console.WriteLine("Odabrali ste rad s polaznicima");
+                    IzbornikRadSaPolaznicima();
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste rad s grupama");
@@ -61,6 +68,50 @@ namespace UcenjeCS.EdunovaAplikacija
             }
 
         }
+
+        private void IzbornikRadSaPolaznicima()
+        {
+            Console.WriteLine("1. Prikaži sve polaznike: ");
+            Console.WriteLine("2. Dodaj polaznika ");
+            Console.WriteLine("3. Uredi polaznika ");
+            Console.WriteLine("4. Izbriši polaznika ");
+            Console.WriteLine("5. Povratak na glavni izbornik");
+            OdabirStavkeIzbornikPolaznik();
+        }
+
+        private void OdabirStavkeIzbornikPolaznik()
+        {
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+                "Odabir mora biti 1-5", 1, 5))
+            {
+                case 1:
+                    Console.WriteLine("Odabrali ste prikaz svih unesenih predavača");
+                    PrikaziSvePredavace();
+                    IzbornikRadSaPolaznicima();
+                    break;
+                case 2:
+                    Console.WriteLine("Odabrali ste dodavanje predavača");
+                    DodajNovogPredavaca();
+                    break;
+                case 3:
+                    Console.WriteLine("Odabrali ste uređivanje predavača");
+                    UrediSmjer();
+                    break;
+                case 4:
+                    Console.WriteLine("Odabrali ste brisanje predavača");
+                    IzbrisiSmjer();
+                    break;
+                case 5:
+                    Console.WriteLine("Povratak na prethodni izbornik");
+                    GlavniIzbornik();
+                    break;
+                default:
+                    Console.WriteLine("Krivi odabir");
+                    IzbornikRadSaPolaznicima();
+                    break;
+            };
+        }
+
         //*****************PREDAVAČI*****************//
         private void IzbornikRadSaPredavacima()
         {
@@ -74,7 +125,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void OdabirStavkeIzbornikPredavac()
         {
-            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika predavača: ",
                 "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
