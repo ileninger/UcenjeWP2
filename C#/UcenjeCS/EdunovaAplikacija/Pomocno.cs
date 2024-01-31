@@ -8,7 +8,7 @@ namespace UcenjeCS.EdunovaAplikacija
 {
     internal class Pomocno
     {
-        public static int UcitajRasponBrojeva(string poruka, string greska,int poc, int kraj)
+        public static int UcitajRasponBrojeva(string poruka, string greska, int poc, int kraj)
         {
             int i;
             while (true)
@@ -53,7 +53,7 @@ namespace UcenjeCS.EdunovaAplikacija
             }
         }
 
-        public static decimal UcitajDecimalniBroj (string poruka, string greska)
+        public static decimal UcitajDecimalniBroj(string poruka, string greska)
         {
             decimal i;
 
@@ -69,14 +69,14 @@ namespace UcenjeCS.EdunovaAplikacija
                     }
                     Console.WriteLine(greska);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(greska);
                 }
             }
 
         }
-        public static string UcitajString(string poruka,string greska)
+        public static string UcitajString(string poruka, string greska)
         {
             string s = "";
             while (true)
@@ -96,6 +96,22 @@ namespace UcenjeCS.EdunovaAplikacija
         {
             Console.Write(poruka);
             return Console.ReadLine().Trim().ToLower().Equals("da") ? true : false;
+        }
+
+        internal static DateTime UcitajDatum(string poruka, string greska)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(poruka);
+                    return DateTime.Parse(Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(greska);
+                }
+            }
         }
     }
 }
