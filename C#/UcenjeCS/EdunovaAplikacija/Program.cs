@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UcenjeCS.EdunovaAplikacija.Model;
 
@@ -12,6 +13,7 @@ namespace UcenjeCS.EdunovaAplikacija
         private List<Smjer> Smjerovi;
         private List<Predavac> Predavaci;
         private List<Polaznik> Polaznici;
+        private List<Grupe> Grupa;
 
         public Program()
         {
@@ -19,6 +21,7 @@ namespace UcenjeCS.EdunovaAplikacija
             Smjerovi = new List<Smjer>();
             Predavaci = new List<Predavac>();
             Polaznici = new List<Polaznik>();
+            Grupa = new List<Grupe>();
 
             PozdravnaPoruka();
             GlavniIzbornik();
@@ -58,6 +61,7 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste rad s grupama");
+                    IzbornikRadSaGrupama();
                     break;
                 case 5:
                     Console.WriteLine("Doviđenja");
@@ -67,6 +71,95 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
             }
 
+        }
+        //*****************GRUPE*****************//
+        private void IzbornikRadSaGrupama()
+        {
+            Console.WriteLine("1. Prikaži sve grupe: ");
+            Console.WriteLine("2. Dodaj grupu ");
+            Console.WriteLine("3. Uredi grupu ");
+            Console.WriteLine("4. Izbriši grupu ");
+            Console.WriteLine("5. Povratak na glavni izbornik");
+            OdabirStavkeIzbornikGrupe();
+        }
+
+        private void OdabirStavkeIzbornikGrupe()
+        {
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika grupe: ",
+         "Odabir mora biti 1-5", 1, 5))
+            {
+                case 1:
+                    Console.WriteLine("Odabrali ste prikaz svih unesenih grupa ");
+                    PrikaziSveGrupe();
+                    IzbornikRadSaPolaznicima();
+                    break;
+                case 2:
+                    Console.WriteLine("Odabrali ste dodavanje grupe ");
+                    UnosNoveGrupe();
+                    break;
+                case 3:
+                    Console.WriteLine("Odabrali ste uređivanje grupe ");
+                    UrediPolaznika();
+                    break;
+                case 4:
+                    Console.WriteLine("Odabrali ste brisanje grupe");
+                    IzbrisiPolaznika();
+                    break;
+                case 5:
+                    Console.WriteLine("Povratak na prethodni izbornik");
+                    GlavniIzbornik();
+                    break;
+                default:
+                    Console.WriteLine("Krivi odabir");
+                    IzbornikRadSaGrupama();
+                    break;
+            }; ;
+        }
+
+        private void PrikaziSveGrupe()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UnosNoveGrupe()
+        {
+            var g = new Grupe();
+            g.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra grupe: ",
+                "Unos mora biti pozitivni cijeli broj");
+            g.Naziv = Pomocno.UcitajString("Unesite naziv grupe: ",
+                "Unos obavezan");
+            g.Smjer = PostaviSmjer();
+            g.Polaznici = PostaviPolaznike();
+            g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
+            Grupa.Add(g);
+        }
+
+
+
+
+        private List<Polaznik> PostaviPolaznike()
+        {
+            List<Polaznik> polaznici = new List<Polaznik>();
+            while (Pomocno.UcitajBool("Želite li dodati polaznike? (da ili bilo što drugo za ne): "))
+            {
+                polaznici.Add(PostaviPolaznika());
+            }
+
+            return polaznici;
+        }
+        private Polaznik PostaviPolaznika()
+        {
+            PrikaziSvePolaznike();
+            int index = Pomocno.UcitajBool("Odaberi redni broj polaznika: ", "Nije dobar odabir", 1, Polaznici.Count());
+            return Polaznici[index - 1];
+        }
+
+
+        private Smjer PostaviSmjer()
+        {
+            PrikaziSveSmjerove();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj grupe: ", "Nije dobar odabir", 1, Smjerovi.Count());
+            return Smjerovi[index - 1];
         }
 
         //*****************POLAZNICI*****************//
