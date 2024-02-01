@@ -139,7 +139,7 @@ namespace UcenjeCS.EdunovaAplikacija
             g.Naziv = Pomocno.UcitajString("Unesite naziv grupe: ",
                 "Unos obavezan");
             g.Smjer = PostaviSmjer();
-            g.Predavac = PostaviPredavaca();
+            g.Predavaci = PostaviPredavace();
             g.Polaznici = PostaviPolaznike();
             g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
             Grupa.Add(g);
@@ -193,16 +193,6 @@ namespace UcenjeCS.EdunovaAplikacija
         private void UrediGrupu()
         {
             PrikaziSveGrupe();
-            //int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Predavaci.Count());
-            //var s = Predavaci[index - 1];
-            //s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ", "Unos mora biti pozitivni cijeli broj");
-            //s.Ime = Pomocno.UcitajString(s.Ime + "Unesi  promljeneno ime predavača", "Unos obavezan" + s.Ime);
-            //s.Prezime = Pomocno.UcitajString(s.Prezime + "Unesi promljenjeno prezime predavača ", "Unos obavezan" + s.Prezime);
-            //s.Email = Pomocno.UcitajString(s.Email + "Unesi promljenjen Email predavača", "Unos obavezan" + s.Email);
-            //s.Oib = Pomocno.UcitajString(s.Oib + "Unesi promljenji oib predavača", "Unos obavezan" + s.Oib);
-            //s.Iban = Pomocno.UcitajString(s.Iban + "Unesi promljenji Iban predavača", "Unos obavezan" + s.Iban);
-            //IzbornikRadSaSmjerovima(); 
-
             int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj grupe: ", "Nije dobar odabir!", 1, Grupa.Count());
             var s = Grupa[index - 1];
             s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ", "Unos mora biti pozitivni cijeli broj");
