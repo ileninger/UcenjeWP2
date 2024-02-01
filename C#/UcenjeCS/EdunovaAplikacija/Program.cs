@@ -141,7 +141,8 @@ namespace UcenjeCS.EdunovaAplikacija
             g.Smjer = PostaviSmjer();
             g.Predavaci = PostaviPredavace();
             g.Polaznici = PostaviPolaznike();
-            g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
+            g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy. ", "Greška");
+            g.MaksimalanBrojPolaznika = Pomocno.UcitajCijeliBroj("Unesite maksimalni broj polaznika ", "Unos mora biti pozitivni cijeli broj");
             Grupa.Add(g);
             IzbornikRadSaGrupama();
         }
@@ -199,8 +200,10 @@ namespace UcenjeCS.EdunovaAplikacija
             s.Naziv  = Pomocno.UcitajString("Unesite naziv grupe: ",
                 "Unos obavezan");
             s.Smjer = PostaviSmjer();
+            s.Predavaci = PostaviPredavace();
             s.Polaznici = PostaviPolaznike();
-            s.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
+            s.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy. ", "Greška");
+            s.MaksimalanBrojPolaznika = Pomocno.UcitajCijeliBroj("Unesite maksimalni broj polaznika ", "Unos mora biti pozitivni cijeli broj");
             Grupa.Add(s);
 
         }

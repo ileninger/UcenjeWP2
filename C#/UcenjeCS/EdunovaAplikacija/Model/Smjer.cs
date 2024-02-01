@@ -19,7 +19,7 @@ namespace UcenjeCS.EdunovaAplikacija.Model
 
         public override string ToString()
         {
-            return Naziv;
+            return "\n Naziv smjera: "+ Naziv + "\n Trajanje smjera iznosi: " + BrojSati + "h" + "\n Cijena smjera iznosi: " + Cijena + "€" + "\n Upisnina iznosi: " + Upisnina + "€";
         }
     }
 }

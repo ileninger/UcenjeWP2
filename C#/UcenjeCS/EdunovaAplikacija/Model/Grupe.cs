@@ -23,5 +23,10 @@ namespace UcenjeCS.EdunovaAplikacija.Model
 
         public List <Polaznik> Polaznici { get; set; }
 
+        public override string ToString()
+        {
+            return "\n Naziv Grupe: "+ Naziv + " \n Naziv smjera: " + Smjer + " \n Datum početka:  " + DatumPocetka + " \n Maksimalni Broj polaznika: " + MaksimalanBrojPolaznika;
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace UcenjeCS.EdunovaAplikacija.Model
         public string BrojUgovora { get; set; }
         public override string ToString()
         {
-            return "Ime: " + Ime + " Prezime: " + Prezime + " OiB: " + Oib + " Email: " + Email + " BrojUgovora: " + BrojUgovora;
+            return "\n Ime: " + Ime + "\n Prezime: " + Prezime + "\n OiB: " + Oib + "\n Email: " + Email + "\n BrojUgovora: " + BrojUgovora;
         }
     }
 }
