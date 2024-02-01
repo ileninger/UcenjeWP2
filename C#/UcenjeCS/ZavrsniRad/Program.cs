@@ -8,5 +8,18 @@ namespace UcenjeCS.ZavrsniRad
 {
     internal class Program
     {
+        public Program()
+        {
+            PozdravnaPoruka();
+        
+            
+        }
+
+        private void PozdravnaPoruka()
+        {
+            Console.WriteLine("****************************");
+            Console.WriteLine("OBRACUN PLAČA BY LENY_V1");
+            Console.WriteLine("****************************");
+        }
     }
 }
