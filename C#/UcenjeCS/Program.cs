@@ -8,4 +8,4 @@ using UcenjeCS;
 //Djeljenje_s_10.Izvedi();
 //AntonioPomoc.Izvedi();
 
-new UcenjeCS.EdunovaAplikacija.Program();
+new UcenjeCS.ZavrsniRad.Program;
