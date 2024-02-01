@@ -20,6 +20,5 @@ namespace UcenjeCS.EdunovaAplikacija.Model
 
         public List <Polaznik> Polaznici { get; set; }
 
-        p
-    }
+            }
 }

@@ -23,10 +23,13 @@ namespace UcenjeCS.EdunovaAplikacija
             Polaznici = new List<Polaznik>();
             Grupa = new List<Grupe>();
 
+            TesniPodaci();
+
             PozdravnaPoruka();
             GlavniIzbornik();
 
         }
+
 
         //*****************GLAVNI IZBORNIK*****************//
 
@@ -44,7 +47,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void OdabirStavkeGlavnogIzbornika()
         {
-            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku izbornika polaznika: ",
+            switch (Pomocno.UcitajRasponBrojeva("Odaberite stavku glavnog izbornika: ",
                 "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
@@ -118,6 +121,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void PrikaziSveGrupe()
         {
+            Console.WriteLine("**********************");
             var i = 0;
             Grupa.ForEach(s =>
             {
@@ -139,8 +143,15 @@ namespace UcenjeCS.EdunovaAplikacija
             g.Polaznici = PostaviPolaznike();
             g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
             Grupa.Add(g);
+            IzbornikRadSaGrupama();
         }
 
+        private Smjer PostaviSmjer()
+        {
+            PrikaziSveSmjerove();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj smjera: ", "Nije dobar odabir", 1, Smjerovi.Count());
+            return Smjerovi[index - 1];
+        }
 
 
         private List<Polaznik> PostaviPolaznike()
@@ -161,18 +172,11 @@ namespace UcenjeCS.EdunovaAplikacija
         }
 
 
-        private Smjer PostaviSmjer()
-        {
-            PrikaziSveSmjerove();
-            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj smjera: ", "Nije dobar odabir", 1, Smjerovi.Count());
-            return Smjerovi[index - 1];
-        }
-
         private List<Predavac> PostaviPredavace()
         {
             List <Predavac> predavac = new List<Predavac> ();
 
-            while (Pomocno.UcitajBool("Želite li dodati polaznike? (da ili bilo što drugo za ne): "))
+            while (Pomocno.UcitajBool("Želite li dodati predavaca? (da ili bilo što drugo za ne): "))
             {
                 predavac.Add(PostaviPredavaca());
             }
@@ -271,6 +275,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void PrikaziSvePolaznike()
         {
+            Console.WriteLine("**********************");
             var i = 0;
             Polaznici.ForEach(s =>
             {
@@ -376,6 +381,7 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void PrikaziSvePredavace()
         {
+            Console.WriteLine("**********************");
             var i = 0;
             Predavaci.ForEach(s =>
             {
@@ -514,6 +520,57 @@ namespace UcenjeCS.EdunovaAplikacija
             Console.WriteLine("**********************************");
             Console.WriteLine("* EDUNOVA KONZOLNA APLIKACIJA V1 *");
             Console.WriteLine("**********************************");
+        }
+
+
+        private void TesniPodaci()
+        {
+            Polaznici.Add(new Polaznik
+            {
+                Sifra = 1,
+                Ime = "Ivan",
+                Prezime = "Leninger",
+                Email = "ilenigner@live.com",
+                Oib = "74203150129"
+            });
+            Polaznici.Add(new Polaznik
+            {
+                Sifra = 2,
+                Ime = "Petrica",
+                Prezime = "Videnović",
+                Email = "pvidenović@gmail.com",
+                Oib = "33843188162"
+            });
+            Polaznici.Add(new Polaznik
+            {
+                Sifra = 3,
+                Ime = "Bratislava",
+                Prezime = "Lugar",
+                Email = "blugar@gmail.com",
+                Oib = "67089812195"
+            });
+            Predavaci.Add(new Predavac
+            {
+                Sifra=1,
+                Ime="Tomislav",
+                Prezime="Jakopec",
+                Email = "tjakopec@gmail.com",
+                Oib = "05483378927",
+                Iban= "HR5023600003983799849"
+            });
+
+            Smjerovi.Add ( new Smjer
+            {
+                Sifra = 1,
+                Naziv = "Web programiranje",
+                BrojSati = 186,
+                Cijena = (float)1399.99,
+                Upisnina =(float)99.99,
+                Verificiran = true
+                
+            });
+
+
         }
 
 
