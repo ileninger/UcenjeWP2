@@ -99,11 +99,11 @@ namespace UcenjeCS.EdunovaAplikacija
                     break;
                 case 3:
                     Console.WriteLine("Odabrali ste uređivanje grupe ");
-                    UrediPolaznika();
+                    UrediGrupu();
                     break;
                 case 4:
                     Console.WriteLine("Odabrali ste brisanje grupe");
-                    IzbrisiPolaznika();
+                    IzbrisiGrupu();
                     break;
                 case 5:
                     Console.WriteLine("Povratak na prethodni izbornik");
@@ -118,7 +118,13 @@ namespace UcenjeCS.EdunovaAplikacija
 
         private void PrikaziSveGrupe()
         {
-            throw new NotImplementedException();
+            var i = 0;
+            Grupa.ForEach(s =>
+            {
+                Console.WriteLine(++i + "." + s);
+            });
+            Console.WriteLine("**********************");
+            IzbornikRadSaGrupama();
         }
 
         private void UnosNoveGrupe()
@@ -129,11 +135,11 @@ namespace UcenjeCS.EdunovaAplikacija
             g.Naziv = Pomocno.UcitajString("Unesite naziv grupe: ",
                 "Unos obavezan");
             g.Smjer = PostaviSmjer();
+            g.Predavac = PostaviPredavaca();
             g.Polaznici = PostaviPolaznike();
             g.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
             Grupa.Add(g);
         }
-
 
 
 
@@ -150,7 +156,7 @@ namespace UcenjeCS.EdunovaAplikacija
         private Polaznik PostaviPolaznika()
         {
             PrikaziSvePolaznike();
-            int index = Pomocno.UcitajBool("Odaberi redni broj polaznika: ", "Nije dobar odabir", 1, Polaznici.Count());
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj polaznika: ", "Nije dobar odabir", 1, Polaznici.Count());
             return Polaznici[index - 1];
         }
 
@@ -158,9 +164,65 @@ namespace UcenjeCS.EdunovaAplikacija
         private Smjer PostaviSmjer()
         {
             PrikaziSveSmjerove();
-            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj grupe: ", "Nije dobar odabir", 1, Smjerovi.Count());
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj smjera: ", "Nije dobar odabir", 1, Smjerovi.Count());
             return Smjerovi[index - 1];
         }
+
+        private List<Predavac> PostaviPredavace()
+        {
+            List <Predavac> predavac = new List<Predavac> ();
+
+            while (Pomocno.UcitajBool("Želite li dodati polaznike? (da ili bilo što drugo za ne): "))
+            {
+                predavac.Add(PostaviPredavaca());
+            }
+            return predavac;
+
+        }
+        private Predavac PostaviPredavaca()
+        {
+            PrikaziSvePredavace();
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavaca: ", "Nije dobar odabir", 1, Predavaci.Count());
+            return Predavaci[index - 1];
+        }
+
+        private void UrediGrupu()
+        {
+            PrikaziSveGrupe();
+            //int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Predavaci.Count());
+            //var s = Predavaci[index - 1];
+            //s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ", "Unos mora biti pozitivni cijeli broj");
+            //s.Ime = Pomocno.UcitajString(s.Ime + "Unesi  promljeneno ime predavača", "Unos obavezan" + s.Ime);
+            //s.Prezime = Pomocno.UcitajString(s.Prezime + "Unesi promljenjeno prezime predavača ", "Unos obavezan" + s.Prezime);
+            //s.Email = Pomocno.UcitajString(s.Email + "Unesi promljenjen Email predavača", "Unos obavezan" + s.Email);
+            //s.Oib = Pomocno.UcitajString(s.Oib + "Unesi promljenji oib predavača", "Unos obavezan" + s.Oib);
+            //s.Iban = Pomocno.UcitajString(s.Iban + "Unesi promljenji Iban predavača", "Unos obavezan" + s.Iban);
+            //IzbornikRadSaSmjerovima(); 
+
+            int index = Pomocno.UcitajRasponBrojeva("Odaberi redni broj grupe: ", "Nije dobar odabir!", 1, Grupa.Count());
+            var s = Grupa[index - 1];
+            s.Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera (" + s.Sifra + "): ", "Unos mora biti pozitivni cijeli broj");
+            s.Naziv  = Pomocno.UcitajString("Unesite naziv grupe: ",
+                "Unos obavezan");
+            s.Smjer = PostaviSmjer();
+            s.Polaznici = PostaviPolaznike();
+            s.DatumPocetka = Pomocno.UcitajDatum("Unesi datum grupe u formatu dd.MM.yyyy.", "Greška");
+            Grupa.Add(s);
+
+        }
+
+        private void IzbrisiGrupu()
+        {
+            PrikaziSveGrupe();
+            Grupa.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Grupa.Count()));
+            IzbornikRadSaGrupama(); ;
+        }
+
+
+
+
+
+
 
         //*****************POLAZNICI*****************//
 
@@ -214,7 +276,7 @@ namespace UcenjeCS.EdunovaAplikacija
             {
                 Console.WriteLine(++i + "." + s);
             });
-            Console.WriteLine("**********************"); ;
+            Console.WriteLine("**********************"); 
         }
 
         private void DodajNovogPolaznika()
@@ -342,7 +404,7 @@ namespace UcenjeCS.EdunovaAplikacija
         {
             PrikaziSvePredavace();
             Predavaci.RemoveAt(Pomocno.UcitajRasponBrojeva("Odaberi redni broj predavača: ", "Nije dobar odabir", 1, Polaznici.Count()));
-            IzbornikRadSaSmjerovima(); ;
+            IzbornikRadSaSmjerovima(); 
         }
 
         private void IzbornikRadSaSmjerovima()
@@ -365,24 +427,24 @@ namespace UcenjeCS.EdunovaAplikacija
                 "Odabir mora biti 1-5", 1, 5))
             {
                 case 1:
-                    Console.WriteLine("Odabrali ste prikaz svih unesenih smjerova");
+                    Console.WriteLine("Odabrali ste prikaz svih unesenih smjerova ");
                     PrikaziSveSmjerove();
                     IzbornikRadSaSmjerovima();
                     break;
                 case 2:
-                    Console.WriteLine("Odabrali ste dodavanje smjera");
+                    Console.WriteLine("Odabrali ste dodavanje smjera ");
                     DodajNoviSmjer();
                     break;
                 case 3:
-                    Console.WriteLine("Odabrali ste uređivanje smjera");
+                    Console.WriteLine("Odabrali ste uređivanje smjera ");
                     UrediSmjer();
                     break;
                 case 4:
-                    Console.WriteLine("Odabrali ste brisanje smjera");
+                    Console.WriteLine("Odabrali ste brisanje smjera ");
                     IzbrisiSmjer();
                     break;
                 case 5:
-                    Console.WriteLine("Povratak na prethodni izbornik");
+                    Console.WriteLine("Povratak na prethodni izbornik ");
                     GlavniIzbornik();
                     break;
                 default:
@@ -398,18 +460,19 @@ namespace UcenjeCS.EdunovaAplikacija
             Smjerovi.Add(new Smjer()
             {
                 Sifra = Pomocno.UcitajCijeliBroj("Unesite šifra smjera: ", "Unos mora biti pozitivni cijeli broj"),
-                Naziv = Pomocno.UcitajString("Unesi naziv smjera: ", "Unos obavezan"),
+                Naziv = Pomocno.UcitajString("Unesi naziv smjera: ", "Unos obavezan "),
                 BrojSati = Pomocno.UcitajCijeliBroj("Unesi broj sati određenog smjera: ", "Unos mora biti cijeli broj"),
-                Cijena = (float)Pomocno.UcitajDecimalniBroj("Unesite cijenu smjera", "Unos mora biti decimalni broj unesen s . "),
-                Upisnina = (float)Pomocno.UcitajDecimalniBroj("Unesite iznos upisnine", "Unos mora biti decimalni broj unesen s . "),
+                Cijena = (float)Pomocno.UcitajDecimalniBroj("Unesite cijenu smjera: ", "Unos mora biti decimalni broj unesen s . "),
+                Upisnina = (float)Pomocno.UcitajDecimalniBroj("Unesite iznos upisnine: ", "Unos mora biti decimalni broj unesen s . "),
                 Verificiran = Pomocno.UcitajBool ("Smjer verificiran? Da ili bilo što drugo za ne: ")
                 // ucitat ostale smjerove
-            }); ;
+            }); 
             IzbornikRadSaSmjerovima();
         }
 
         private void PrikaziSveSmjerove()
         {
+            Console.WriteLine("**********************");
             var i = 0;
             Smjerovi.ForEach(s =>
             {
