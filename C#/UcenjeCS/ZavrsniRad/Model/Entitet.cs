@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace UcenjeCS.ZavrsniRad.Model
 {
-    internal class Entitet
+    internal abstract class Entitet
     {
+        public int ID { get; set; }
     }
 }
