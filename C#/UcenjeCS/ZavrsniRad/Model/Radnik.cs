@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UcenjeCS.ZavrsniRad.Model
 {
-    internal class Osoba
+    internal class Radnik:Entitet
     {
         public string Ime { get; set; }
 
