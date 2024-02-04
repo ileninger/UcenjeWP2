@@ -12,7 +12,7 @@ namespace UcenjeCS.ZavrsniRad.Model
 
         public string Prezime { get; set; }
 
-        public DateOnly DatumZaposlenja { get; set; }
+        public DateTime DatumZaposlenja { get; set; }
 
         public string IBAN { get; set; }
         public string OiB { get; set; }
