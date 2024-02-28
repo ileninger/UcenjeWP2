@@ -22,4 +22,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseDefaultFiles();
+app.UseDeveloperExceptionPage();
+app.MapFallbackToFile("index.html");
+
+
 app.Run();

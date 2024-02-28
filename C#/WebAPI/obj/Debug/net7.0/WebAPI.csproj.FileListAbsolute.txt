@@ -66,3 +66,4 @@ C:\Users\ivanl\Documents\GitHub\UcenjeWP2\C#\WebAPI\obj\Debug\net7.0\refint\WebA
 C:\Users\ivanl\Documents\GitHub\UcenjeWP2\C#\WebAPI\obj\Debug\net7.0\WebAPI.pdb
 C:\Users\ivanl\Documents\GitHub\UcenjeWP2\C#\WebAPI\obj\Debug\net7.0\WebAPI.genruntimeconfig.cache
 C:\Users\ivanl\Documents\GitHub\UcenjeWP2\C#\WebAPI\obj\Debug\net7.0\ref\WebAPI.dll
+C:\Users\ileni\OneDrive\Dokumenti\GitHub\UcenjeWP2\C#\WebAPI\bin\Debug\net7.0\WebAPI.staticwebassets.runtime.json

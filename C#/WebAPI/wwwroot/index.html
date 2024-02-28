@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <a href="#" id="gumb">
+        Izvedi
+    </a>
+
+    <pre id="rez"></pre>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#gumb').click(function () {
+
+                $.ajax({
+                    url: "https://localhost:7777/CiklicneMatrice/Ciklo2?Redovi=5&Stupci=5",
+                    cache: false,
+                    success: function (html) {
+                        $("#rez").append(html);
+                    }
+                });
+
+                return false;
+            });
+
+        });
+    </script>
+</body>
+</html>
